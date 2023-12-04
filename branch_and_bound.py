@@ -25,7 +25,6 @@ def BB(universe,sets,costs):
     subset = [1 for x in range(len(sets))]#all sets in
     subset[0] = 0
     bestCost = sum(costs) #actually the worst cost 
-    bestSubset = None
     i = 1
 
     while i > 0:
@@ -70,8 +69,7 @@ def main(a,b,c,z=time.time()):
     for x in range(len(sets)):
         if sets[x]==1:
             cover.append(S[x])
-    print('covering sets: ',cover,'\n','total cost: ',cost,'$')
-    print('time:',time.time()-z)
+    return cost
 
 m1= 5
 S1 = [[1,3],[2],[1,2,5],[3,5],[4],[5],[1,3],[2,4,5],[1,2],[2,3]]

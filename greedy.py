@@ -5,8 +5,8 @@ import time
 def set_cover(universe, subsets,costs):
     cost=0
     elements = set(e for s in subsets for e in s)
-    if len(elements) != universe:
-        return None, None
+    if elements != universe:
+        return None
     covered = set()
     cover = []
     while covered != elements:
@@ -25,9 +25,7 @@ def main(a,b,c,x=time.time()):
     subsets = [set(x) for x in sub]
     costs =  c 
     cover = set_cover(universe, subsets,costs)
-    print('covering sets= ',cover[0],'\n',
-          'cost= ',cover[1],'$')
-    print('time: ',time.time()-x)
+    return cover[1]
      
 m1= 5
 S1 = [[1,3],[2],[1,2,5],[3,5],[4],[5],[1,3],[2,4,5],[1,2],[2,3]]

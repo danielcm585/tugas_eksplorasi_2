@@ -1,0 +1,18 @@
+Size = 20
+Function solve_greedy took 1.3988 seconds and used 0.1562 MiB of memory
+Function solve_bb took 1.7007 seconds and used 0.0469 MiB of memory
+> Greedy           : 435
+> Branch and Bound : 379
+
+Size = 200
+Function solve_greedy took 1.5048 seconds and used 0.0781 MiB of memory
+Function solve_bb took 1.5744 seconds and used 0.0469 MiB of memory
+> Greedy           : 1475
+> Branch and Bound : 1305
+
+Size = 2000
+Function solve_greedy took 1.5580 seconds and used 0.8438 MiB of memory
+Function solve_bb took 1.6103 seconds and used 0.8750 MiB of memory
+> Greedy           : 7052
+> Branch and Bound : 6771
+

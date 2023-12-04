@@ -4,17 +4,17 @@ import branch_and_bound
 from decorator import *
 from functools import reduce
 
-def generate(size):
+def generate(universe):
     costs = [ 
-        random.randint(1,1000000000) 
-        for i in range(size)
+        random.randint(1,1000) 
+        for i in range(universe)
     ]
     subsets = [
         set([ 
-            random.randint(1,size) 
-            for i in range(random.randint(1,size)) 
+            random.randint(1,universe) 
+            for i in range(random.randint(1,universe)) 
         ])
-        for i in range(size-1)
+        for i in range(random.randint(10,20))
     ]
     
     mx_val = max([ 
@@ -28,28 +28,26 @@ def generate(size):
 
     res = set([ 
         i 
-        for i in range(1,size+1)
+        for i in range(1,universe+1)
         if i not in set_val
     ])
     subsets.append(res)
-
-    universe = len(subsets)
     
     return universe, subsets, costs
 
 @benchmark
 def solve_greedy(universe, subsets, costs):
-    return greedy.set_cover(universe, subsets, costs)
+    return greedy.main(universe, subsets, costs)
 
 @benchmark
 def solve_bb(universe, subsets, costs):
-    return branch_and_bound.BB(universe, subsets, costs)
+    return branch_and_bound.main(universe, subsets, costs)
 
 for size in [20, 200, 2000]:
     print(f'Size = {size}')
     universe, subsets, costs = generate(size)
-    cover, cost = solve_greedy(universe, subsets, costs)
-    bestCost, bestSubset = solve_bb(universe, subsets, costs)
-    print(f'> Greedy           : {cost}')
-    print(f'> Branch and Bound : {bestCost}')
+    greedy_cost = solve_greedy(universe, subsets, costs)
+    bb_cost = solve_bb(universe, subsets, costs)
+    print(f'> Greedy           : {greedy_cost}')
+    print(f'> Branch and Bound : {bb_cost}')
     print()
